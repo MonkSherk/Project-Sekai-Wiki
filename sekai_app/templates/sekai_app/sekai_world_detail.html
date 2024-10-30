@@ -1,0 +1,27 @@
+{% extends 'sekai_app/base.html' %}
+{% block title %}Project SEKAI Wiki - {{ sekai_world.name }}{% endblock %}
+{% block content %}
+    <h1 class="page-title text-center">{{ sekai_world.name }}</h1>
+    <div class="content-center">
+        <div class="image-box-large">
+            <img src="{{ sekai_world.image_url.url }}" alt="{{ sekai_world.name }}" class="image-rounded-large">
+        </div>
+        <p class="text-gray description-text">{{ sekai_world.description }}</p>
+
+        <h2 class="section-title">Группы в {{ sekai_world.name }}</h2>
+        <div class="card-grid">
+            {% for group in sekai_world.groups.all %}
+                <a href="{% url 'group-detail' group.pk %}">
+                    <div class="card-overlayed" style="background-image: url('{{ group.image.url }}');">
+                        <div class="overlay-text">
+                            <h2>{{ group.name }}</h2>
+                            <p>{{ group.description|truncatewords:20 }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% empty %}
+                <p class="text-gray">Нет групп в этом мире.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

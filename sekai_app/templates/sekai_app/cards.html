@@ -1,0 +1,16 @@
+{% extends 'sekai_app/base.html' %}
+{% block title %}Project SEKAI Wiki - Cards{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="page-title">Карточки</h1>
+    <div class="card-grid">
+        {% for card in cards %}
+        <a href="{% url 'card-detail' card.pk %}" class="card card-horizontal" style="background-image: url('{{ card.image_url.url }}');">
+            <div class="card-overlay">
+                <h2 class="card-title">{{ card.rarity }} Карта - {{ card.character.name }}</h2>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

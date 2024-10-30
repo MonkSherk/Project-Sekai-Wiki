@@ -1,0 +1,29 @@
+{% extends 'sekai_app/base.html' %}
+{% block title %}Project SEKAI Wiki - {{ character.name }}{% endblock %}
+{% block content %}
+    <h1 class="page-title text-center">{{ character.name }}</h1>
+    <div class="content-center">
+        <div class="image-box-large">
+            <img src="{{ character.image.url }}" alt="{{ character.name }}" class="image-rounded-large no-hover">
+        </div>
+        <p class="text-gray description-text">{{ character.description }}</p>
+        <p class="text-gray"><strong>Группа:</strong> <a href="{% url 'group-detail' character.group.pk %}" class="link">{{ character.group.name }}</a></p>
+        <p class="text-gray"><strong>Тип Персонажа:</strong> {{ character.sekai_type }}</p>
+
+        <h2 class="section-title">Карточки</h2>
+        <div class="card-grid">
+            {% for card in character.cards.all %}
+                <a href="{% url 'card-detail' card.pk %}">
+                    <div class="card-overlayed" style="background-image: url('{{ card.image_url.url }}');">
+                        <div class="overlay-text">
+                            <h2>{{ card.rarity }} - Уровень {{ card.level }}</h2>
+                            <p>{% if card.is_limited %}Лимитированная{% endif %}</p>
+                        </div>
+                    </div>
+                </a>
+            {% empty %}
+                <p class="text-gray">У этого персонажа нет карточек.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

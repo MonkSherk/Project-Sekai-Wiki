@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your custom styles here */
+body {
+    background-image: url('sekai_app/static/sekai_app/Project_SEKAI_title_screen.png'); /* Replace with your background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Arial', sans-serif; /* Customize the font */
+}
+
+.nav-bar {
+    @apply fixed top-0 left-0 h-screen w-64 bg-gray-900 text-white transition-all duration-500 ease-in-out;
+}
+
+.nav-bar.open {
+    @apply w-80; /* Expand width on open */
+}
+
+.nav-item {
+    @apply flex items-center px-4 py-2 rounded-md hover:bg-gray-800 cursor-pointer;
+}
+
+.nav-item:hover {
+    @apply text-gray-100; /* Change text color on hover */
+}
+
+/* ... more custom styles for other elements ... */

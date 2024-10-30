@@ -1,0 +1,15 @@
+{% extends 'sekai_app/base.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="page-title">Ивенты</h1>
+    <div class="card-grid">
+        {% for event in events %}
+            <a href="{% url 'event-detail' event.pk %}" class="card card-horizontal" style="background-image: url('{{ event.image.url }}');">
+                <div class="card-overlay">
+                    <h2 class="card-title">{{ event.name }}</h2>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

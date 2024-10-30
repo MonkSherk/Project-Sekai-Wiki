@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project SEKAI Wiki</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'sekai_app/styles.css' %}">
+</head>
+<body class="bg-dark text-white">
+    <div class="flex-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="sidebar-title">Project SEKAI Wiki</h1>
+                <div class="toggle-sidebar">☰</div>
+                <nav>
+                    <ul class="sidebar-menu">
+                        <li><a href="{% url 'home' %}" class="sidebar-link">🏠 Дом</a></li>
+                        <li><a href="{% url 'sekai-list' %}" class="sidebar-link">🌍 SEKAI Миры</a></li>
+                        <li><a href="{% url 'group-list' %}" class="sidebar-link">👥 Группы</a></li>
+                        <li><a href="{% url 'character-list' %}" class="sidebar-link">🎭 Персонажи</a></li>
+                        <li><a href="{% url 'card-list' %}" class="sidebar-link">🃏 Карточки</a></li>
+                        <li><a href="{% url 'song-list' %}" class="sidebar-link">🎶 Музыка</a></li>
+                        <li><a href="{% url 'event-list' %}" class="sidebar-link">📅 Ивенты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="container">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.sidebar');
+            const mainContent = document.querySelector('.main-content');
+            const toggleButton = document.querySelector('.toggle-sidebar');
+
+            toggleButton.addEventListener('click', () => {
+                sidebar.classList.toggle('sidebar-collapsed');
+                mainContent.classList.toggle('main-collapsed');
+            });
+        });
+    </script>
+</body>
+</html>

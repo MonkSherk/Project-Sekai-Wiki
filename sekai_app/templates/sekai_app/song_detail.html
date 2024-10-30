@@ -1,0 +1,23 @@
+{% extends 'sekai_app/base.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="page-title text-center">{{ song.name }}</h1>
+    <div class="content-center">
+        <div class="image-box">
+            <img src="{{ song.image.url }}" alt="{{ song.name }}" class="image-rounded">
+        </div>
+        <p class="text-gray">
+            <strong>Певцы:</strong> {{ song.artist }}<br>
+            {% if song.group %}
+                <strong>Группа:</strong> <a href="{% url 'group-detail' song.group.pk %}" class="link">{{ song.group.name }}</a><br>
+            {% endif %}
+            {% if song.animation %}
+                <strong>Анимация:</strong> <a href="{{ song.animation }}" target="_blank" class="link">View Animation</a><br>
+            {% endif %}
+            {% if song.song_url %}
+                <strong>Сыллка на песню:</strong> <a href="{{ song.song_url }}" target="_blank" class="link">Listen to Song</a><br>
+            {% endif %}
+        </p>
+    </div>
+</div>
+{% endblock %}

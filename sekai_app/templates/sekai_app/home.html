@@ -1,0 +1,12 @@
+{% extends 'sekai_app/base.html' %}
+{% load static %}
+{% block title %}Project SEKAI Wiki - Home{% endblock %}
+{% block content %}
+    <div class="flex-center h-screen">
+        <div class="content-box">
+            <h1 class="page-title text-center">Добро пожаловать на WiKi сайт по Project Sekai!</h1>
+            <p class="text-gray text-center">Изучите мир Project Sekai благодаря нашему сайту!</p>
+            <img src="{% static 'sekai_app/Project_SEKAI_title_screen.png' %}" alt="Project SEKAI Colorful Stage" class="image-full rounded-md cursor-pointer mt-4" onclick="window.location.href='{% url 'sekai-list' %}';">
+        </div>
+    </div>
+{% endblock %}

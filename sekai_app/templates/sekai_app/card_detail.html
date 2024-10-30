@@ -1,0 +1,22 @@
+{% extends 'sekai_app/base.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="page-title text-center">{{ card.character.name }} - {{ card.rarity }} Card</h1>
+    <div class="content-center">
+        <div class="image-box">
+            <img src="{{ card.image_url.url }}" alt="{{ card.character.name }} Card" class="image-rounded">
+        </div>
+        <p class="text-gray">
+            <strong>Персонаж:</strong> <a href="{% url 'character-detail' card.character.pk %}" class="link">{{ card.character.name }}</a><br>
+            <strong>Редкость:</strong> {{ card.rarity }}<br>
+            <strong>Уровень:</strong> {{ card.level }}<br>
+            <ul>
+                {% for key, value in card.stats.items %}
+                    <li class="text-small">{{ key }}: {{ value }}</li>
+                {% endfor %}
+            </ul>
+            <p class="text-small">{% if card.is_limited %}Limited{% endif %}</p>
+        </p>
+    </div>
+</div>
+{% endblock %}

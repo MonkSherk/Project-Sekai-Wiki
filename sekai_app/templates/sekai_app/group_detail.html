@@ -1,0 +1,28 @@
+{% extends 'sekai_app/base.html' %}
+{% block title %}Project SEKAI Wiki - {{ group.name }}{% endblock %}
+{% block content %}
+    <h1 class="page-title text-center">{{ group.name }}</h1>
+    <div class="content-center">
+        <div class="image-box">
+            <img src="{{ group.image.url }}" alt="{{ group.name }}" class="image-rounded">
+        </div>
+        <p class="text-gray"><strong>О группе:</strong> {{ group.theme }}</p>
+        <p class="text-gray">{{ group.description }}</p>
+
+        <h2 class="section-title">Участники</h2>
+        <div class="card-grid">
+            {% for character in group.characters.all %}
+                <a href="{% url 'character-detail' character.pk %}">
+                    <div class="card" style="background-image: url('{{ character.image.url }}'); background-size: cover; background-position: center;">
+                        <div style="background: rgba(0, 0, 0, 0.5); padding: 10px;">
+                            <h2 class="card-title">{{ character.name }}</h2>
+                            <p class="text-small">{{ character.description|truncatewords:20 }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% empty %}
+                <p class="text-gray">Похоже в этой группе нет участников!</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

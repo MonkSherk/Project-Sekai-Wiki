@@ -1,0 +1,20 @@
+{% extends 'sekai_app/base.html' %}
+{% block title %}Project SEKAI Wiki - Songs{% endblock %}
+{% block content %}
+    <h1 class="page-title text-center">Songs</h1>
+    <div class="card-grid">
+        {% for song in songs %}
+            <a href="{% url 'song-detail' song.pk %}">
+                <div class="card-overlayed" style="background-image: url('{{ song.image.url }}');">
+                    <div class="overlay-text">
+                        <h2>{{ song.name }}</h2>
+                        <p><strong>Artist:</strong> {{ song.artist }}</p>
+                        <p><strong>Genre:</strong> {{ song.genre }}</p>
+                    </div>
+                </div>
+            </a>
+        {% empty %}
+            <p class="text-gray">Нет доступных песен.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

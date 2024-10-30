@@ -1,0 +1,17 @@
+{% extends 'sekai_app/base.html' %}
+{% block content %}
+<div class="container">
+    <h1 class="page-title text-center">{{ event.name }}</h1>
+    <div class="content-center">
+        <div class="image-box">
+            <img src="{{ event.image.url }}" alt="{{ event.name }}" class="image-rounded">
+        </div>
+        <p class="text-gray">{{ event.description }}</p>
+        {% if event.group %}
+            <p class="text-gray"><strong>Группа:</strong> <a href="{% url 'group-detail' event.group.pk %}" class="link">{{ event.group.name }}</a></p>
+        {% endif %}
+        <p class="text-gray"><strong>Начало Ивента:</strong> {{ event.start_date }}</p>
+        <p class="text-gray"><strong>Закончен:</strong> {{ event.end_date }}</p>
+    </div>
+</div>
+{% endblock %}
